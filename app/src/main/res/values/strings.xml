@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">To-Do List</string>
 
-    <!-- Navigation Drawer-->
-    <string name="add_task">Новое задание</string>
+    <string name="add_task">Новая задача</string>
     <string name="task_name">Название</string>
     <string name="task_description">Описание</string>
     <string name="task_week">Выполнять каждую неделю</string>
@@ -11,6 +10,7 @@
     <string name="todo_list">Список дел</string>
     <string name="week_list">На неделю</string>
     <string name="done_list">Сделанные</string>
+    <string name="settings">Настройки</string>
 
     <string name="about">О приложении</string>
     <string name="about_text">Приложение \"To-Do List\"</string>
@@ -32,6 +32,13 @@
     </string>
     <string name="open_source_drawer_link">
         https://github.com/mikepenz/MaterialDrawer
+    </string>
+
+    <string name="delete_done_tasks">Удалить выполненные задания</string>
+    <string name="delete">Удалить</string>
+    <string name="news">
+        Пока что еженедельные ничем не отличаются от обычных\n\n
+        Галочку о выполнении почти не видно, но она есть. Справа от названия задачи.
     </string>
 
 </resources>

@@ -9,12 +9,15 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
 import com.sample.drawer.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.SortedSet;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -33,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawerResult = Utils.createCommonDrawer(MainActivity.this, toolbar, headerResult);
-        drawerResult.setSelectionByIdentifier(5, true);
+        drawerResult.setSelectionByIdentifier(2, true);
 
         Data.receive(this);
     }
@@ -78,20 +81,37 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+    }
 
+    public void setDeleteDoneListener() {
+        this.findViewById(R.id.btn_delete_done).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Data.deleteDoneTasks(getApplicationContext());
+                Data.doneList.clear();
+            }
+        });
     }
 
     public void showTasks(String type) {
         Context context = getApplicationContext();
         if (type.equals("ToDo")) {
-            LinearLayout linLayout = (LinearLayout) findViewById(R.id.todo_layout);
-            for (Task task : Data.todoList) {
-                linLayout.addView(task.getView(context));
-            }
+            TaskAdapter taskAdapter = new TaskAdapter(context, new ArrayList<>(Data.todoList));
+
+            ListView layout = (ListView) findViewById(R.id.todo_layout);
+            layout.setAdapter(taskAdapter);
+
         } else if (type.equals("Week")) {
+            TaskAdapter taskAdapter = new TaskAdapter(context, new ArrayList<>(Data.weekList));
+
+            ListView layout = (ListView) findViewById(R.id.week_layout);
+            layout.setAdapter(taskAdapter);
 
         } else if (type.equals("Done")) {
+            TaskAdapter taskAdapter = new TaskAdapter(context, new ArrayList<>(Data.doneList));
 
+            ListView layout = (ListView) findViewById(R.id.done_layout);
+            layout.setAdapter(taskAdapter);
         }
     }
 }

@@ -1,16 +1,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20sp"
     android:orientation="vertical"
     android:background="@color/bg_color">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="200sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10sp"
         android:text="@string/about_text"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#707070"
         />
@@ -19,13 +20,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="18sp"
         android:text="@string/app_version"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#707070"
         />
 
+    <TextView
+        android:id="@+id/news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40sp"
+        android:isScrollContainer="true"
+        android:text="@string/news"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#707070"
+        />
 
 
 </LinearLayout>

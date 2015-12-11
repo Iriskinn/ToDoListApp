@@ -14,12 +14,14 @@ import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.sample.drawer.Data;
 import com.sample.drawer.MainActivity;
 import com.sample.drawer.R;
 import com.sample.drawer.fragments.AboutFragment;
 import com.sample.drawer.fragments.AddTaskFragment;
 import com.sample.drawer.fragments.DoneListFragment;
 import com.sample.drawer.fragments.OpenSourceFragment;
+import com.sample.drawer.fragments.SettingsFragment;
 import com.sample.drawer.fragments.TodoListFragment;
 import com.sample.drawer.fragments.WeekListFragment;
 
@@ -64,6 +66,9 @@ public class Utils {
                     } else if (drawerItem.getIdentifier() == 6) {
                         activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new OpenSourceFragment()).commit();
                         activity.setTitle(R.string.open_source);
+                    } else if (drawerItem.getIdentifier() == 10) {
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new SettingsFragment()).commit();
+                        activity.setTitle(R.string.settings);
                     }
 
                 }
@@ -82,12 +87,13 @@ public class Utils {
 
                 new DividerDrawerItem(),
                 new PrimaryDrawerItem().withName(R.string.todo_list).withIcon(GoogleMaterial.Icon.gmd_list).withIdentifier(2),
-                new PrimaryDrawerItem().withName(R.string.week_list).withIcon(GoogleMaterial.Icon.gmd_done_all).withIdentifier(3),
+                new PrimaryDrawerItem().withName(R.string.week_list).withIcon(GoogleMaterial.Icon.gmd_list).withIdentifier(3),
                 new PrimaryDrawerItem().withName(R.string.done_list).withIcon(GoogleMaterial.Icon.gmd_done_all).withIdentifier(4),
+                new PrimaryDrawerItem().withName(R.string.settings).withIcon(GoogleMaterial.Icon.gmd_settings).withIdentifier(10),
 
                 new DividerDrawerItem(),
-                new PrimaryDrawerItem().withName(R.string.about).withIcon(GoogleMaterial.Icon.gmd_help).withIdentifier(5),
-                new PrimaryDrawerItem().withName(R.string.open_source).withIcon(FontAwesome.Icon.faw_github).withIdentifier(6)
+                new PrimaryDrawerItem().withName(R.string.about).withIcon(GoogleMaterial.Icon.gmd_help).withIdentifier(5)
+                //new PrimaryDrawerItem().withName(R.string.open_source).withIcon(FontAwesome.Icon.faw_github).withIdentifier(6)
             )
             .withOnDrawerListener(new Drawer.OnDrawerListener() {
                 @Override

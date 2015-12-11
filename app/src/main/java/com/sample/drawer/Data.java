@@ -16,19 +16,15 @@ public class Data {
         todoList = new LinkedList<>();
         weekList = new LinkedList<>();
         doneList = new LinkedList<>();
+        changed = new LinkedList<>();
 
-        // получить данные из SQLite
+
         DBHelper dbHelper = new DBHelper(context);
-        // создаем объект для данных
-        // подключаемся к БД
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        // делаем запрос всех данных из таблицы mytable, получаем Cursor
         Cursor c = db.query("taskTable", null, null, null, null, null, null);
 
-        // ставим позицию курсора на первую строку выборки
-        // если в выборке нет строк, вернется false
+
         if (c.moveToFirst()) {
-            // определяем номера столбцов по имени в выборке
             int nameColIndex = c.getColumnIndex("name");
             int descColIndex = c.getColumnIndex("description");
             int typeColIndex = c.getColumnIndex("type");
@@ -72,8 +68,6 @@ public class Data {
             weekList.add(task);
         }
 
-        Log.d("Log: ", "--- Insert in mytable: ---");
-
         ContentValues cv = new ContentValues();
         DBHelper dbHelper = new DBHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -91,32 +85,80 @@ public class Data {
         }
         cv.put("status", status);
 
-        // вставляем запись и получаем ее ID
-        long rowID = db.insert("taskTable", null, cv);
-        Log.d("Log: ", "row inserted, ID = " + rowID);
+        db.insert("taskTable", null, cv);
     }
 
-    public static void doTask(Task task) {
-        Task newTask = task;
-        newTask.setStatus(true);
-        for(int i = 0; i < todoList.size(); i++) {
-            if (todoList.get(i).getName().equals(newTask.getName())) {
-                todoList.remove(i);
-            }
+    public static void changeTask(Task task, boolean isChecked, Context context) {
+        DBHelper dbHelper = new DBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("name", task.getName());
+        cv.put("date_time", task.getDateTime());
+        cv.put("type", task.getType());
+        cv.put("description", task.getDescription());
+        if (isChecked) {
+            cv.put("status", 1);
+        } else {
+            cv.put("status", 0);
         }
 
-        for(int i = 0; i < weekList.size(); i++) {
-            if (weekList.get(i).getName().equals(newTask.getName())) {
-                weekList.remove(i);
+        int updCount = db.update("taskTable", cv, "date_time = ?",
+                new String[] { Integer.toString(task.getDateTime()) });
+
+        if (!task.getStatus() && isChecked) {
+            task.setStatus(true);
+            doneList.add(task);
+            for (int i = 0; i < doneList.size(); i++) {
+                if (doneList.get(i).getDateTime() >= task.getDateTime()) {
+                    doneList.add(i, task);
+                    break;
+                }
+            }
+            if (task.getType().equals("Week")) {
+                Data.weekList.remove(task);
+            } else {
+                Data.todoList.remove(task);
+            }
+            doneList.removeLast();
+        }
+
+        if (task.getStatus() && !isChecked) {
+            task.setStatus(false);
+            Data.doneList.remove(task);
+            if (task.getType().equals("Week")) {
+                weekList.add(task);
+                for (int i = 0; i < weekList.size(); i++) {
+                    if (weekList.get(i).getDateTime() >= task.getDateTime()) {
+                        weekList.add(i, task);
+                        break;
+                    }
+                }
+                weekList.removeLast();
+            } else {
+                todoList.add(task);
+                for (int i = 0; i <todoList.size(); i++) {
+                    if (todoList.get(i).getDateTime() >= task.getDateTime()) {
+                        todoList.add(i, task);
+                        break;
+                    }
+                }
+                todoList.removeLast();
             }
         }
-        doneList.add(newTask);
+        Log.d("Log; ", "updated rows count = " + updCount + " " + isChecked);
+        dbHelper.close();
+    }
+
+    public static void deleteDoneTasks(Context context) {
+        DBHelper dbHelper = new DBHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete("taskTable", "status = 1", null);
     }
 
     public static LinkedList<Task> todoList;
     public static LinkedList<Task> weekList;
     public static LinkedList<Task> doneList;
-
+    public static LinkedList<Task> changed;
 
     static class DBHelper extends SQLiteOpenHelper {
         public DBHelper(Context context) {
