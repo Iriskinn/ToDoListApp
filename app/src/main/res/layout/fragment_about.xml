@@ -27,18 +27,23 @@
         android:textColor="#707070"
         />
 
-    <TextView
-        android:id="@+id/news"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="40sp"
-        android:isScrollContainer="true"
-        android:text="@string/news"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="#707070"
-        />
+        android:padding="1sp"
+        android:layout_gravity="center" >
+        <TextView
+            android:id="@+id/news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/news"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#707070"
+            />
+    </ScrollView>
 
 
 </LinearLayout>

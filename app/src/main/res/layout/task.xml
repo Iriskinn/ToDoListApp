@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10sp"
         android:orientation="horizontal" >
 
         <TextView
@@ -18,29 +19,49 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="40sp"
-            android:layout_margin="5sp"
             android:textSize="18sp"
+            android:layout_gravity="center_vertical"
+            android:shrinkColumns="0, true"
             android:textColor="@color/text_color" >
         </TextView>
+
         <CheckBox
             android:id="@+id/cbBox"
             android:layout_weight="0"
             android:layout_width="wrap_content"
-            android:layout_height="40sp"
-            android:layout_margin="5sp"
-            android:gravity="center_vertical" >
-        </CheckBox>
+            android:layout_height="wrap_content"
+            android:button="@drawable/checkbox_selector"
+            android:gravity="center_horizontal|center_vertical" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/taskDesc"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5sp"
-        android:textSize="16sp"
-        android:visibility="gone"
-        android:textColor="@color/text_color" >
-    </TextView>
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/taskDesc"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:textColor="@color/text_color" >
+        </TextView>
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_weight="0"
+            android:background="@color/primary"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="10sp"
+            android:visibility="gone"
+            android:src="@mipmap/ic_delete_white_24dp" />
+
+    </LinearLayout>
 
 </LinearLayout>

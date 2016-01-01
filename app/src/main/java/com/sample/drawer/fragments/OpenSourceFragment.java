@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sample.drawer.MainActivity;
 import com.sample.drawer.R;
 
 
@@ -15,4 +16,10 @@ public class OpenSourceFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_open_source, container, false);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        ((MainActivity) getActivity()).resetMenu();
+    }
 }

@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">To-Do List</string>
 
+    <string name="add_list">Новый список</string>
     <string name="add_task">Новая задача</string>
-    <string name="task_name">Название</string>
+    <string name="title">Заголовок</string>
     <string name="task_description">Описание</string>
     <string name="task_week">Выполнять каждую неделю</string>
     <string name="button_add_task">Добавить</string>
@@ -14,7 +15,7 @@
 
     <string name="about">О приложении</string>
     <string name="about_text">Приложение \"To-Do List\"</string>
-    <string name="app_version">Версия: 0.1</string>
+    <string name="app_version">Версия: 1.0</string>
 
     <string name="open_source_app_text">
         Приложение на GitHub:
@@ -36,9 +37,26 @@
 
     <string name="delete_done_tasks">Удалить выполненные задания</string>
     <string name="delete">Удалить</string>
+    <string name="delete_list">Удалить список</string>
     <string name="news">
-        Пока что еженедельные ничем не отличаются от обычных\n\n
-        Галочку о выполнении почти не видно, но она есть. Справа от названия задачи.
+        Интерфейс был изменен.\n
+        Теперь есть возможность лучше упорядочивать задачи,
+        что облегчит их выполнение.
+        \n\n\n
+        Новое:\n\n
+        • Создание и удаление списков задач\n
+        • Создание задач внутри списков\n
+        • Удаление отдельных задач\n
+        \n
+        Исправлено:\n\n
+        • Отметки о выполнении теперь видно:)\n
+        \n
+        \n
+        Еженедельные задачи попрежнему ничем не отличаются от обычных.
     </string>
+    <string name="msg_done_taskt_delete">Выполненные задачи удалены</string>
+    <string name="ask_del_done_tasks">Удалить выполненные задачи?</string>
+    <string name="msg_done_will_be_deleted">Все выполненные задачи будут удалены</string>
+
 
 </resources>

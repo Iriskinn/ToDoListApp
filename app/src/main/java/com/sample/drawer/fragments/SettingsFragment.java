@@ -20,6 +20,8 @@ public class SettingsFragment extends Fragment {
 
     public void onStart() {
         super.onStart();
-        ((MainActivity)getActivity()).setDeleteDoneListener();
+
+        ((MainActivity) getActivity()).resetMenu();
+        ((MainActivity) getActivity()).setDeleteDoneListener();
     }
 }

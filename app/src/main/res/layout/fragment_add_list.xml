@@ -7,32 +7,18 @@
     android:orientation="vertical"
     android:background="@color/bg_color">
 
-
     <EditText
-        android:id="@+id/edit_task_name"
+        android:id="@+id/edit_list_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20sp"
         android:layout_marginTop="50sp"
         android:hint="@string/title"
+        android:maxLength="20"
         android:inputType="text" />
 
-    <EditText
-        android:id="@+id/edit_task_description"
-        android:inputType="textMultiLine"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20sp"
-        android:hint="@string/task_description" />
-
-    <CheckBox android:id="@+id/checkbox_week_task"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20sp"
-        android:text="@string/task_week"/>
-
     <Button
-        android:id="@+id/btn_add_task"
+        android:id="@+id/btn_add_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -42,13 +28,6 @@
         android:padding="5sp"
 
         android:onClick="onBtnAddTaskClick"/>
-
-
-    <TextView
-        android:id="@+id/tv_list_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
 
 
 </LinearLayout>

@@ -18,6 +18,8 @@ public class DoneListFragment extends Fragment {
 
     public void onStart() {
         super.onStart();
-        ((MainActivity)getActivity()).showTasks("Done");
+
+        ((MainActivity) getActivity()).resetMenu();
+        ((MainActivity) getActivity()).showDoneTasks();
     }
 }
